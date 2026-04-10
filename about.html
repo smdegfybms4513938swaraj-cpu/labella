@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | La Bella Salon & Body Spa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Instrument+Serif:ital@0;1&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables */
+        :root {
+            --bg-dark: #121212;
+            --primary-gold: #ffffff;
+            --gold-hover: #cccccc;
+            --text-light: #F8F9FA;
+            --text-muted: #B0B0B0;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Reset & Base Styles */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { background-color: var(--bg-dark); color: var(--text-muted); font-family: 'Montserrat', sans-serif; line-height: 1.6; overflow-x: hidden; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Instrument Serif', serif; color: var(--text-light); font-weight: 400; }
+        .italic-accent { font-style: italic; }
+        a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
+
+        a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px solid var(--primary-gold); outline-offset: 4px; }
+        .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; z-index: 1001; }
+        .mobile-menu-btn span { display: block; width: 25px; height: 2px; background-color: var(--primary-gold); margin: 5px 0; transition: all 0.3s ease; }
+        .mobile-menu-btn.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .mobile-menu-btn.active span:nth-child(2) { opacity: 0; }
+        .mobile-menu-btn.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+        /* Typography */
+        .section-title { font-size: 2.5rem; margin-bottom: 1rem; text-align: center; color: var(--primary-gold); }
+        .gold-shine {
+            background: linear-gradient(to right, #ffffff 20%, #cccccc 40%, #cccccc 60%, #ffffff 80%);
+            background-size: 200% auto; color: #000; background-clip: text; text-fill-color: transparent;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+        h1.gold-shine { animation: shine 4s linear infinite; }
+        .reveal.active .gold-shine:not(h1), .reveal.active.gold-shine:not(h1) { animation: shine 3s linear forwards; }
+        .gold-shine:not(h1):hover { animation: shine 2s linear forwards; }
+        @keyframes shine { to { background-position: 200% center; } }
+        @media (prefers-reduced-motion: reduce) {
+            .gold-shine, h1.gold-shine, .reveal.active .gold-shine, .reveal.active.gold-shine, .gold-shine:hover { animation: none !important; }
+            .reveal { transition: none !important; opacity: 1 !important; transform: none !important; }
+        }
+
+        /* Header & Nav */
+        header { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; background: var(--glass-bg); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--glass-border); padding: 0.8rem 5%; display: flex; justify-content: space-between; align-items: center; }
+        .logo-container { display: flex; flex-direction: column; align-items: center; text-decoration: none; transition: transform 0.3s ease; }
+        .logo-img { height: 100px; width: auto; max-width: 100%; object-fit: contain; display: block; transition: transform 0.3s ease; padding: 5px; }
+        .logo-container:hover .text-logo { transform: scale(1.05); }
+        .text-logo { display: flex; flex-direction: column; align-items: center; padding: 5px; transition: transform 0.3s ease; }
+        .logo-main { font-family: 'Alex Brush', cursive; font-size: 4.2rem; line-height: 1.2; font-weight: 400; margin-bottom: -5px; padding: 10px 20px; display: inline-block; color: #ffffff; text-shadow: 0 2px 10px rgba(255, 255, 255, 0.1); }
+        .logo-sub { font-family: 'Montserrat', sans-serif; font-size: 0.6rem; letter-spacing: 3px; text-transform: uppercase; font-weight: 500; color: #ffffff; text-shadow: none; }
+        nav { display: flex; align-items: center; gap: 2rem; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { color: var(--text-light); font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; }
+        .nav-links a:hover { color: var(--primary-gold); }
+        .btn { display: inline-block; padding: 0.8rem 1.5rem; background-color: var(--primary-gold); color: #000000; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; border: none; border-radius: 30px; cursor: pointer; transition: all 0.3s ease; font-family: 'Montserrat', sans-serif; }
+        .btn:hover { background-color: var(--gold-hover); color: #000000; transform: scale(1.05); }
+
+        /* Page Content */
+        .page-header { padding: 10rem 5% 4rem; text-align: center; background: radial-gradient(circle at 50% 30%, #2a2415 0%, #121212 70%); position: relative; overflow: hidden; }
+        .page-header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url('https://images.unsplash.com/photo-1521590832167-7bfcfaa6362f?q=80&w=1920&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            filter: grayscale(100%) contrast(1.2);
+            opacity: 0.15;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .page-header > * { position: relative; z-index: 1; }
+        .page-header h1 { font-size: 3.5rem; margin-bottom: 1rem; }
+        
+        .about-content { padding: 4rem 5%; max-width: 1200px; margin: 0 auto; }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-bottom: 4rem; }
+        .about-text p { font-size: 1.1rem; margin-bottom: 1.5rem; }
+        .about-image { width: 100%; aspect-ratio: 2 / 1; background-image: url('salon-sign.webp'); background-size: cover; background-position: center; background-repeat: no-repeat; border-radius: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); border: 1px solid var(--glass-border); filter: grayscale(100%) contrast(1.1); position: relative; }
+        .about-image::after { content: ''; position: absolute; inset: 0; background: rgba(255, 255, 255, 0.15); mix-blend-mode: color; border-radius: 24px; }
+        
+        .mission-vision { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 4rem; }
+        .mv-card { background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 3rem; border-radius: 24px; text-align: center; }
+        .mv-card h3 { color: var(--primary-gold); font-size: 2rem; margin-bottom: 1rem; }
+
+        /* Footer */
+        footer { background-color: #0a0a0a; padding: 4rem 5% 2rem; border-top: 1px solid var(--glass-border); }
+        .footer-logo-wrapper { display: flex; justify-content: center; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .footer-logo-img { height: 160px; padding: 15px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; max-width: 1200px; margin: 0 auto 3rem; }
+        .footer-col h4 { color: var(--primary-gold); font-size: 1.2rem; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 1px; }
+        .footer-col p { margin-bottom: 0.8rem; }
+        .social-icons { display: flex; gap: 1rem; margin-top: 1rem; }
+        .social-icon { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--glass-border); color: var(--text-light); transition: all 0.3s ease; }
+        .social-icon:hover { background: var(--primary-gold); color: var(--bg-dark); transform: translateY(-3px); border-color: var(--primary-gold); }
+        .social-icon svg { width: 18px; height: 18px; fill: currentColor; }
+        .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.9rem; }
+
+        /* Animations */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 768px) {
+            header { padding: 0.5rem 5%; }
+            .logo-img { height: 60px; }
+            .footer-logo-img { height: 120px; }
+            .logo-main { font-size: 2.5rem; }
+            .logo-sub { font-size: 0.45rem; letter-spacing: 2px; }
+            .section-title { font-size: 2rem; }
+            .page-header h1 { font-size: 2.5rem; }
+            .page-header p { font-size: 1rem; }
+            .about-grid { grid-template-columns: 1fr; }
+            .mission-vision { grid-template-columns: 1fr; }
+            .mobile-menu-btn { display: block; }
+            nav.nav-menu { position: fixed; top: 0; right: -100%; width: 80%; max-width: 300px; height: 100vh; background: var(--bg-dark); border-left: 1px solid var(--glass-border); flex-direction: column; justify-content: center; padding: 2rem; transition: right 0.3s ease; z-index: 1000; }
+            nav.nav-menu.active { right: 0; }
+            .nav-links { flex-direction: column; align-items: center; margin-bottom: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <a href="/index.html" class="logo-container">
+            <img src="logolive.png" alt="La Bella Logo" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="text-logo" style="display: none;">
+                <span class="logo-main">La Bella</span>
+                <span class="logo-sub">HAIR &bull; BEAUTY &bull; SPA &bull; SALON</span>
+            </div>
+        </a>
+        <button class="mobile-menu-btn" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav class="nav-menu">
+            <ul class="nav-links">
+                <li><a href="/about.html">About Us</a></li>
+                <li><a href="/catalog.html">Catalog</a></li>
+                <li><a href="/contact.html">Contact</a></li>
+            </ul>
+            <a href="/index.html#booking" class="btn">Book Now</a>
+        </nav>
+    </header>
+
+    <div class="page-header">
+        <h1 class="gold-shine">Our <span class="italic-accent">Story</span></h1>
+        <p>Discover the essence of La Bella Salon & Body Spa.</p>
+    </div>
+
+    <section class="about-content">
+        <div class="about-grid">
+            <div class="about-image reveal"></div>
+            <div class="about-text reveal">
+                <h2 class="section-title gold-shine" style="text-align: left;">Welcome to <span class="italic-accent">La Bella</span></h2>
+                <p>Step into La Bella Salon & Body Spa, where luxury meets personalized care. Located near Palava Phase 2, our highly trained professionals provide a clean, relaxing environment dedicated to your ultimate well-being.</p>
+                <p>Since our establishment, we have been committed to offering premium grooming and relaxation services. We believe that beauty is not just about how you look, but how you feel. That's why every treatment is designed to rejuvenate both body and mind.</p>
+                <p>Our team of expert stylists and therapists use only the finest products to ensure you receive the highest quality care. Whether you're preparing for a special occasion or simply taking a moment for yourself, La Bella is your sanctuary.</p>
+            </div>
+        </div>
+
+        <div class="mission-vision">
+            <div class="mv-card reveal">
+                <h3 class="italic-accent">Our Mission</h3>
+                <p>To provide an unparalleled salon and spa experience that enhances our clients' natural beauty and promotes overall wellness through expert care, premium products, and a serene environment.</p>
+            </div>
+            <div class="mv-card reveal">
+                <h3 class="italic-accent">Our Vision</h3>
+                <p>To be the premier destination for beauty and relaxation in the region, recognized for our commitment to excellence, innovation in treatments, and exceptional customer service.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo-wrapper reveal">
+            <a href="/index.html" class="logo-container">
+                <img src="logolive.png" alt="La Bella Logo" class="logo-img footer-logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="text-logo" style="display: none;">
+                    <span class="logo-main">La Bella</span>
+                    <span class="logo-sub">HAIR &bull; BEAUTY &bull; SPA &bull; SALON</span>
+                </div>
+            </a>
+        </div>
+        <div class="footer-grid reveal">
+            <div class="footer-col">
+                <h4 class="gold-shine">Visit Us</h4>
+                <p>Shop No. 4 & 5, Casa Regalia</p>
+                <p>Lakeshore Greens, Badlapur Pipeline Road</p>
+                <p>near Khoni Palava Phase 2</p>
+                <p>Dombivli East, Maharashtra 421204</p>
+            </div>
+            <div class="footer-col">
+                <h4 class="gold-shine">Hours</h4>
+                <p>Monday - Sunday</p>
+                <p>10:00 AM - 10:00 PM</p>
+            </div>
+            <div class="footer-col">
+                <h4 class="gold-shine">Contact</h4>
+                <p>+91 70454 03903</p>
+            </div>
+            <div class="footer-col">
+                <h4 class="gold-shine">Company</h4>
+                <p><a href="/careers.html">Careers</a></p>
+            </div>
+            <div class="footer-col">
+                <h4 class="gold-shine">Socials</h4>
+                <div class="social-icons">
+                    <a href="#" target="_blank" class="social-icon" aria-label="Facebook">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
+                    </a>
+                    <a href="#" target="_blank" class="social-icon" aria-label="Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    </a>
+                    <a href="#" target="_blank" class="social-icon" aria-label="LinkedIn">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright &copy; 2026 La Bella Salon & Body Spa. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileBtn = document.querySelector('.mobile-menu-btn');
+            const navMenu = document.querySelector('.nav-menu');
+            if (mobileBtn && navMenu) {
+                mobileBtn.addEventListener('click', () => { mobileBtn.classList.toggle('active'); navMenu.classList.toggle('active'); });
+                document.querySelectorAll('.nav-links a, .nav-menu .btn').forEach(link => {
+                    link.addEventListener('click', () => { mobileBtn.classList.remove('active'); navMenu.classList.remove('active'); });
+                });
+            }
+            const reveals = document.querySelectorAll('.reveal');
+            const revealOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
+            const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, revealOptions);
+            reveals.forEach(reveal => revealOnScroll.observe(reveal));
+        });
+    </script>
+</body>
+</html>

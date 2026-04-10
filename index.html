@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Bella Salon & Body Spa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Instrument+Serif:ital@0;1&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables */
+        :root {
+            --bg-dark: #121212;
+            --primary-gold: #ffffff;
+            --gold-hover: #cccccc;
+            --text-light: #F8F9FA;
+            --text-muted: #B0B0B0;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-muted);
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Instrument Serif', serif;
+            color: var(--text-light);
+            font-weight: 400;
+        }
+
+        .italic-accent {
+            font-style: italic;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+
+        /* Typography */
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            color: var(--primary-gold);
+        }
+
+        .gold-shine {
+            background: linear-gradient(
+                to right,
+                #ffffff 20%,
+                #cccccc 40%,
+                #cccccc 60%,
+                #ffffff 80%
+            );
+            background-size: 200% auto;
+            color: #000;
+            background-clip: text;
+            text-fill-color: transparent;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        h1.gold-shine {
+            animation: shine 4s linear infinite;
+        }
+
+        .reveal.active .gold-shine:not(h1),
+        .reveal.active.gold-shine:not(h1) {
+            animation: shine 3s linear forwards;
+        }
+
+        .gold-shine:not(h1):hover {
+            animation: shine 2s linear forwards;
+        }
+
+        @keyframes shine {
+            to {
+                background-position: 200% center;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .gold-shine, h1.gold-shine, .reveal.active .gold-shine, .reveal.active.gold-shine, .gold-shine:hover {
+                animation: none !important;
+            }
+            .reveal {
+                transition: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+            }
+        }
+
+        /* Header & Nav */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 0.8rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+            outline: 2px solid var(--primary-gold);
+            outline-offset: 4px;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+
+        .mobile-menu-btn span {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background-color: var(--primary-gold);
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-btn.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .mobile-menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-btn.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        .logo-img {
+            height: 100px;
+            width: auto;
+            max-width: 100%;
+            object-fit: contain;
+            display: block;
+            transition: transform 0.3s ease;
+            padding: 5px;
+        }
+
+        .logo-container:hover .text-logo {
+            transform: scale(1.05);
+        }
+
+        .text-logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-main {
+            font-family: 'Alex Brush', cursive;
+            font-size: 4.2rem;
+            line-height: 1.2;
+            font-weight: 400;
+            margin-bottom: -5px;
+            padding: 10px 20px; /* Prevent cutting off edges */
+            display: inline-block;
+            color: #ffffff;
+            text-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
+        }
+
+        .logo-sub {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.6rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 500;
+            color: #ffffff;
+            text-shadow: none;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-gold);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--primary-gold);
+            color: #000000;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .btn:hover {
+            background-color: var(--gold-hover);
+            color: #000000;
+            transform: scale(1.05);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary-gold);
+            border: 2px solid var(--primary-gold);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-gold);
+            color: #000000;
+        }
+
+        /* Hero Section */
+        #home {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background: radial-gradient(circle at 50% 30%, #2a2415 0%, #121212 70%);
+            padding: 0 20px;
+            overflow: hidden;
+        }
+
+        #home::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url('salon-exterior.webp');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            filter: grayscale(100%) contrast(1.2);
+            opacity: 0.15;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.06'/%3E%3C/svg%3E");
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-size: 1.8rem;
+            margin-bottom: 2.5rem;
+            color: var(--text-light);
+            letter-spacing: 0.5px;
+        }
+
+        /* About Section */
+        section {
+            padding: 6rem 5%;
+        }
+
+        #about .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-text h2 {
+            text-align: left;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-image {
+            width: 100%;
+            aspect-ratio: 2 / 1;
+            background-image: url('salon-sign.webp');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            border: 1px solid var(--glass-border);
+            filter: grayscale(100%) contrast(1.1);
+            position: relative;
+        }
+
+        .about-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.15);
+            mix-blend-mode: color;
+            border-radius: 24px;
+        }
+
+        /* Catalog Section */
+        #catalog {
+            background-color: #1a1a1a;
+        }
+
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 3rem auto 0;
+        }
+
+        .catalog-card {
+            background: var(--bg-dark);
+            border: 1px solid var(--glass-border);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .catalog-card-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 16px;
+            margin-bottom: 1.5rem;
+            filter: grayscale(100%) contrast(1.1);
+            opacity: 0.8;
+            border: 1px solid var(--glass-border);
+        }
+
+        .catalog-card.full-image-card {
+            padding: 0;
+            overflow: hidden;
+            justify-content: flex-end;
+            position: relative;
+            min-height: 350px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .catalog-card.full-image-card .catalog-card-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            border-radius: 0;
+            border: none;
+            z-index: 1;
+            object-fit: cover;
+            opacity: 1;
+        }
+
+        .catalog-card.full-image-card .card-content {
+            position: relative;
+            z-index: 2;
+            background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0) 100%);
+            width: 100%;
+            padding: 2.5rem 2rem;
+            text-align: left;
+            margin-top: auto;
+        }
+
+        .catalog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.15);
+            border-color: var(--primary-gold);
+        }
+
+        .catalog-card h3 {
+            color: var(--primary-gold);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .catalog-card p {
+            font-size: 1rem;
+        }
+
+        /* Booking Section */
+        #booking {
+            position: relative;
+            background: radial-gradient(circle at 50% 50%, #1f1c14 0%, #121212 80%);
+            padding: 8rem 5%;
+        }
+
+        .booking-container {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            padding: 3rem;
+            border-radius: 24px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+        }
+
+        .booking-container h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--glass-border);
+            color: var(--text-light);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            border-radius: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-gold);
+        }
+
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        select.form-control {
+            appearance: none;
+            cursor: pointer;
+        }
+        
+        select.form-control option {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+        }
+
+        .booking-container .btn {
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .success-message {
+            text-align: center;
+            font-size: 1.5rem;
+            color: var(--primary-gold);
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            padding: 2rem 0;
+            display: none;
+        }
+
+        .form-control.error {
+            border-color: #ff4444;
+        }
+
+        .error-text {
+            color: #ff4444;
+            font-size: 0.85rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0a0a0a;
+            padding: 4rem 5% 2rem;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .footer-logo-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .footer-logo-img {
+            height: 160px;
+            padding: 15px;
+        }
+
+        .footer-logo-wrapper .logo-main {
+            font-size: 5rem;
+        }
+
+        .footer-logo-wrapper .logo-sub {
+            font-size: 0.8rem;
+            letter-spacing: 5px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto 3rem;
+        }
+
+        .footer-col h4 {
+            color: var(--primary-gold);
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-col p {
+            margin-bottom: 0.8rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid var(--glass-border);
+            color: var(--text-light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: var(--primary-gold);
+            color: var(--bg-dark);
+            transform: translateY(-3px);
+            border-color: var(--primary-gold);
+        }
+
+        .social-icon svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            section {
+                padding: 4rem 5%;
+            }
+            #booking {
+                padding: 4rem 5%;
+            }
+            header {
+                padding: 0.5rem 5%;
+            }
+            .logo-img {
+                height: 60px;
+            }
+            .footer-logo-img {
+                height: 120px;
+            }
+            .logo-main {
+                font-size: 2.5rem;
+            }
+            .logo-sub {
+                font-size: 0.45rem;
+                letter-spacing: 2px;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            .hero-content p {
+                font-size: 1rem;
+            }
+            
+            #about .about-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            nav.nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 300px;
+                height: 100vh;
+                background: var(--bg-dark);
+                border-left: 1px solid var(--glass-border);
+                flex-direction: column;
+                justify-content: center;
+                padding: 2rem;
+                transition: right 0.3s ease;
+                z-index: 1000;
+            }
+
+            nav.nav-menu.active {
+                right: 0;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
+                margin-bottom: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <a href="#home" class="logo-container">
+            <img src="logolive.png" alt="La Bella Logo" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="text-logo" style="display: none;">
+                <span class="logo-main">La Bella</span>
+                <span class="logo-sub">HAIR &bull; BEAUTY &bull; SPA &bull; SALON</span>
+            </div>
+        </a>
+        <button class="mobile-menu-btn" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav class="nav-menu">
+            <ul class="nav-links">
+                <li><a href="/about.html">About Us</a></li>
+                <li><a href="/catalog.html">Catalog</a></li>
+                <li><a href="/contact.html">Contact</a></li>
+            </ul>
+            <a href="#booking" class="btn">Book Now</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home">
+        <div class="overlay"></div>
+        <div class="hero-content reveal">
+            <h1 class="gold-shine">Experience <span class="italic-accent">Premium</span> Grooming & Relaxation.</h1>
+            <p>Your sanctuary for beauty and wellness in Casa Regalia.</p>
+            <a href="catalog.html" class="btn btn-outline">Explore Our Catalog</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="about-container">
+            <div class="about-image reveal"></div>
+            <div class="about-text reveal">
+                <h2 class="section-title gold-shine">About <span class="italic-accent">Us</span></h2>
+                <p>Step into La Bella Salon & Body Spa, where luxury meets personalized care. Located near Palava Phase 2, our highly trained professionals provide a clean, relaxing environment dedicated to your ultimate well-being.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Catalog Section -->
+    <section id="catalog">
+        <h2 class="section-title reveal gold-shine">Our <span class="italic-accent">Services</span></h2>
+        <div class="catalog-grid">
+            <div class="catalog-card reveal">
+                <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?q=80&w=800&auto=format&fit=crop" alt="Hair Care" class="catalog-card-img">
+                <h3 class="gold-shine">Hair Care & Styling</h3>
+                <p>Precision haircuts, advanced styling, global coloring, and highlights.</p>
+            </div>
+            <div class="catalog-card reveal">
+                <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=800&auto=format&fit=crop" alt="Skin and Spa" class="catalog-card-img">
+                <h3 class="gold-shine">Skin & Spa</h3>
+                <p>D-Tan, Hydra Facials, and fruit cleanups. Relaxing Thai and Aroma body massages.</p>
+            </div>
+            <div class="catalog-card reveal">
+                <img src="https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?q=80&w=800&auto=format&fit=crop" alt="Advanced Treatments" class="catalog-card-img">
+                <h3 class="gold-shine">Advanced Treatments</h3>
+                <p>Premium rebonding, smoothening, and Keratin treatments.</p>
+            </div>
+            <div class="catalog-card reveal">
+                <img src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?q=80&w=800&auto=format&fit=crop" alt="Grooming and Nails" class="catalog-card-img">
+                <h3 class="gold-shine">Grooming & Nails</h3>
+                <p>Expert threading, waxing, men's grooming, and spa manicures/pedicures.</p>
+            </div>
+            <div class="catalog-card reveal">
+                <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?q=80&w=800&auto=format&fit=crop" alt="Aesthetic Treatments" class="catalog-card-img">
+                <h3 class="gold-shine">Aesthetic Treatments</h3>
+                <p>Premium anti-aging facials, microdermabrasion, and specialized skin rejuvenation therapies.</p>
+            </div>
+            <div class="catalog-card reveal">
+                <img src="https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?q=80&w=800&auto=format&fit=crop" alt="Tattoo Studio" class="catalog-card-img">
+                <h3 class="gold-shine">Tattoo Studio</h3>
+                <p>Custom designs, fine line work, and professional tattooing in a safe, sterile environment.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section id="booking">
+        <div class="overlay"></div>
+        <div class="booking-container reveal" id="booking-form-container">
+            <h2 class="section-title gold-shine">Book an <span class="italic-accent">Appointment</span></h2>
+            <form id="appointment-form">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Full Name" required>
+                    <div class="error-text">Please enter your full name.</div>
+                </div>
+                <div class="form-group">
+                    <input type="tel" class="form-control" placeholder="Phone Number" required>
+                    <div class="error-text">Please enter a valid phone number.</div>
+                </div>
+                <div class="form-group">
+                    <select class="form-control" required>
+                        <option value="" disabled selected>Service Needed</option>
+                        <option value="Hair">Hair</option>
+                        <option value="Skin">Skin</option>
+                        <option value="Spa">Spa</option>
+                        <option value="Nails">Nails</option>
+                        <option value="Grooming">Grooming</option>
+                        <option value="Tattoo">Tattoo</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <div class="error-text">Please select a service.</div>
+                </div>
+                <div class="form-group">
+                    <select id="booking-date" class="form-control" required>
+                        <option value="" disabled selected>Select Date</option>
+                    </select>
+                    <div class="error-text">Please select a date.</div>
+                </div>
+                <div class="form-group">
+                    <select id="booking-time" class="form-control" required disabled>
+                        <option value="" disabled selected>Select a Date First</option>
+                    </select>
+                    <div class="error-text">Please select a time.</div>
+                </div>
+                <button type="submit" class="btn">Confirm Appointment</button>
+            </form>
+            <div id="success-message" class="success-message">
+                <p class="gold-shine" style="margin-bottom: 1.5rem;">Thank you! Your appointment request at La Bella has been received.</p>
+                <button id="book-another-btn" class="btn btn-outline">Book Another Appointment</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Footer -->
+    <footer id="contact">
+        <div class="footer-logo-wrapper reveal">
+            <a href="#home" class="logo-container">
+                <img src="logolive.png" alt="La Bella Logo" class="logo-img footer-logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="text-logo" style="display: none;">
+                    <span class="logo-main">La Bella</span>
+                    <span class="logo-sub">HAIR &bull; BEAUTY &bull; SPA &bull; SALON</span>
+                </div>
+            </a>
+        </div>
+        <div class="footer-grid reveal">
+            <div class="footer-col">
+                <h4 class="gold-shine">Visit Us</h4>
+                <p>Shop No. 4 & 5, Casa Regalia</p>
+                <p>Lakeshore Greens, Badlapur Pipeline Road</p>
+                <p>near Khoni Palava Phase 2</p>
+                <p>Dombivli East, Maharashtra 421204</p>
+            </div>
+            <div class="footer-col">
+                <h4 class="gold-shine">Hours</h4>
+                <p>Monday - Sunday</p>
+                <p>10:00 AM - 10:00 PM</p>
+            </div>
+            <div class="footer-col">
+                <h4 class="gold-shine">Contact</h4>
+                <p>+91 70454 03903</p>
+            </div>
+            <div class="footer-col">
+                <h4 class="gold-shine">Company</h4>
+                <p><a href="/careers.html">Careers</a></p>
+            </div>
+            <div class="footer-col">
+                <h4 class="gold-shine">Socials</h4>
+                <div class="social-icons">
+                    <a href="#" target="_blank" class="social-icon" aria-label="Facebook">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
+                    </a>
+                    <a href="#" target="_blank" class="social-icon" aria-label="Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    </a>
+                    <a href="#" target="_blank" class="social-icon" aria-label="LinkedIn">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright &copy; 2026 La Bella Salon & Body Spa. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Scroll Reveal Animation
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile Menu Toggle
+            const mobileBtn = document.querySelector('.mobile-menu-btn');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            if (mobileBtn && navMenu) {
+                mobileBtn.addEventListener('click', () => {
+                    mobileBtn.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                });
+                
+                // Close menu when clicking a link
+                document.querySelectorAll('.nav-links a, .nav-menu .btn').forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileBtn.classList.remove('active');
+                        navMenu.classList.remove('active');
+                    });
+                });
+            }
+
+            const reveals = document.querySelectorAll('.reveal');
+
+            const revealOptions = {
+                threshold: 0.15,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        return;
+                    } else {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, revealOptions);
+
+            reveals.forEach(reveal => {
+                revealOnScroll.observe(reveal);
+            });
+
+            // Form Submission Handling
+            const form = document.getElementById('appointment-form');
+            const successMessage = document.getElementById('success-message');
+            const bookAnotherBtn = document.getElementById('book-another-btn');
+
+            if (form) {
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    
+                    let isValid = true;
+                    const inputs = form.querySelectorAll('input, select');
+                    
+                    inputs.forEach(input => {
+                        const errorText = input.nextElementSibling;
+                        if (!input.value) {
+                            isValid = false;
+                            input.classList.add('error');
+                            if (errorText && errorText.classList.contains('error-text')) {
+                                errorText.style.display = 'block';
+                            }
+                        } else {
+                            input.classList.remove('error');
+                            if (errorText && errorText.classList.contains('error-text')) {
+                                errorText.style.display = 'none';
+                            }
+                        }
+                        
+                        // Clear error on input
+                        input.addEventListener('input', () => {
+                            input.classList.remove('error');
+                            if (errorText && errorText.classList.contains('error-text')) {
+                                errorText.style.display = 'none';
+                            }
+                        }, { once: true });
+                    });
+
+                    if (isValid) {
+                        form.style.display = 'none';
+                        successMessage.style.display = 'block';
+                    }
+                });
+            }
+            
+            if (bookAnotherBtn) {
+                bookAnotherBtn.addEventListener('click', () => {
+                    form.reset();
+                    successMessage.style.display = 'none';
+                    form.style.display = 'block';
+                    if(document.getElementById('booking-time')) {
+                        document.getElementById('booking-time').disabled = true;
+                        document.getElementById('booking-time').innerHTML = '<option value="" disabled selected>Select a Date First</option>';
+                    }
+                });
+            }
+
+            // Date and Time Logic
+            const dateSelect = document.getElementById('booking-date');
+            const timeSelect = document.getElementById('booking-time');
+
+            if (dateSelect && timeSelect) {
+                const today = new Date();
+
+                const formatDate = (date) => {
+                    const yyyy = date.getFullYear();
+                    const mm = String(date.getMonth() + 1).padStart(2, '0');
+                    const dd = String(date.getDate()).padStart(2, '0');
+                    return `${yyyy}-${mm}-${dd}`;
+                };
+
+                const formatDisplayDate = (date) => {
+                    const options = { weekday: 'short', month: 'short', day: 'numeric' };
+                    return date.toLocaleDateString('en-US', options);
+                };
+
+                // Populate date dropdown
+                for (let i = 0; i <= 4; i++) {
+                    const d = new Date(today);
+                    d.setDate(today.getDate() + i);
+                    const option = document.createElement('option');
+                    option.value = formatDate(d);
+                    option.textContent = i === 0 ? `Today (${formatDisplayDate(d)})` : 
+                                         i === 1 ? `Tomorrow (${formatDisplayDate(d)})` : 
+                                         formatDisplayDate(d);
+                    dateSelect.appendChild(option);
+                }
+
+                const generateTimeSlots = (selectedDateStr) => {
+                    timeSelect.innerHTML = '<option value="" disabled selected>Select Time Slot</option>';
+                    if (!selectedDateStr) {
+                        timeSelect.disabled = true;
+                        return;
+                    }
+
+                    timeSelect.disabled = false;
+                    const isToday = selectedDateStr === formatDate(today);
+                    const currentHour = today.getHours();
+                    const currentMinute = today.getMinutes();
+
+                    let slotsAdded = 0;
+
+                    for (let hour = 11; hour <= 21; hour++) {
+                        for (let min of [0, 30]) {
+                            if (hour === 21 && min === 30) continue; // End at 9:00 PM
+
+                            if (isToday) {
+                                if (hour < currentHour || (hour === currentHour && min <= currentMinute)) {
+                                    continue;
+                                }
+                            }
+
+                            const timeString = `${hour > 12 ? hour - 12 : hour}:${min === 0 ? '00' : '30'} ${hour >= 12 ? 'PM' : 'AM'}`;
+                            const option = document.createElement('option');
+                            option.value = timeString;
+                            option.textContent = timeString;
+                            timeSelect.appendChild(option);
+                            slotsAdded++;
+                        }
+                    }
+
+                    if (slotsAdded === 0) {
+                        const option = document.createElement('option');
+                        option.value = "";
+                        option.textContent = "No slots available today";
+                        option.disabled = true;
+                        timeSelect.appendChild(option);
+                    }
+                };
+
+                dateSelect.addEventListener('change', (e) => {
+                    generateTimeSlots(e.target.value);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
