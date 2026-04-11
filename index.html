@@ -1005,7 +1005,25 @@
                     
                     inputs.forEach(input => {
                         const errorText = input.nextElementSibling;
+                        let isFieldValid = true;
+
                         if (!input.value) {
+                            isFieldValid = false;
+                        } else if (input.type === 'tel') {
+                            // Phone number validation (at least 10 digits)
+                            const phoneRegex = /^\+?[0-9]{10,15}$/;
+                            if (!phoneRegex.test(input.value.replace(/\s+/g, ''))) {
+                                isFieldValid = false;
+                                if (errorText) errorText.textContent = "Please enter a valid phone number (10-15 digits).";
+                            }
+                        } else if (input.type === 'text' && input.name === 'Full Name') {
+                            if (input.value.trim().length < 2) {
+                                isFieldValid = false;
+                                if (errorText) errorText.textContent = "Please enter a valid full name.";
+                            }
+                        }
+
+                        if (!isFieldValid) {
                             isValid = false;
                             input.classList.add('error');
                             if (errorText && errorText.classList.contains('error-text')) {
