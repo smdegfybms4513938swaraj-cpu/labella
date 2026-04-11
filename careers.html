@@ -206,18 +206,20 @@
             <h1 class="section-title gold-shine">Join Our <span class="italic-accent">Team</span></h1>
             <p class="careers-intro">We are always looking for passionate and talented professionals to join La Bella Salon & Body Spa. Fill out the form below to apply.</p>
             
-            <form id="careers-form">
+            <form id="careers-form" enctype="multipart/form-data">
+                <input type="hidden" name="_subject" value="New Career Application - La Bella">
+                <input type="hidden" name="_captcha" value="false">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Full Name" required>
+                    <input type="text" name="Full Name" class="form-control" placeholder="Full Name" required>
                 </div>
                 <div class="form-group">
-                    <input type="email" class="form-control" placeholder="Email Address" required>
+                    <input type="email" name="Email" class="form-control" placeholder="Email Address" required>
                 </div>
                 <div class="form-group">
-                    <input type="tel" class="form-control" placeholder="Phone Number" required>
+                    <input type="tel" name="Phone Number" class="form-control" placeholder="Phone Number" required oninput="this.value = this.value.replace(/[^0-9+]/g, '')">
                 </div>
                 <div class="form-group">
-                    <select class="form-control" required>
+                    <select name="Position" class="form-control" required>
                         <option value="" disabled selected>Position Applied For</option>
                         <option value="Hair Stylist">Senior Hair Stylist</option>
                         <option value="Makeup Artist">Makeup Artist</option>
@@ -228,11 +230,11 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <textarea class="form-control" placeholder="Tell us about your experience..." required></textarea>
+                    <textarea name="Experience" class="form-control" placeholder="Tell us about your experience..." required></textarea>
                 </div>
                 <div class="form-group">
                     <div class="file-upload" onclick="document.getElementById('cv-upload').click()">
-                        <input type="file" id="cv-upload" accept=".pdf,.doc,.docx" required onchange="document.getElementById('file-name').textContent = this.files[0].name">
+                        <input type="file" name="attachment" id="cv-upload" accept=".pdf,.doc,.docx" required onchange="document.getElementById('file-name').textContent = this.files[0].name">
                         <label>Click to Upload CV (PDF, DOCX)</label>
                         <p id="file-name" style="margin-top: 10px; font-size: 0.9rem; color: var(--text-light);"></p>
                     </div>
@@ -281,20 +283,40 @@
                 });
 
                 if (isValid) {
-                    form.style.display = 'none';
-                    const successMsg = document.createElement('div');
-                    successMsg.className = 'success-message';
-                    successMsg.innerHTML = `
-                        <p class="gold-shine" style="margin-bottom: 1.5rem;">Thank you for applying! Your application has been received and our team will contact you soon.</p>
-                        <button id="apply-another-btn" class="btn btn-outline" style="color: var(--primary-gold); border: 2px solid var(--primary-gold); background: transparent;">Submit Another Application</button>
-                    `;
-                    formContainer.appendChild(successMsg);
-                    
-                    document.getElementById('apply-another-btn').addEventListener('click', () => {
-                        form.reset();
-                        document.getElementById('file-name').textContent = '';
-                        successMsg.remove();
-                        form.style.display = 'block';
+                    const submitBtn = form.querySelector('button[type="submit"]');
+                    const originalText = submitBtn.textContent;
+                    submitBtn.textContent = 'Sending...';
+                    submitBtn.disabled = true;
+
+                    fetch("https://formsubmit.co/ajax/swarajkute7221@gmail.com", {
+                        method: "POST",
+                        body: new FormData(form)
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        form.style.display = 'none';
+                        const successMsg = document.createElement('div');
+                        successMsg.className = 'success-message';
+                        successMsg.innerHTML = `
+                            <p class="gold-shine" style="margin-bottom: 1.5rem;">Thank you for applying! Your application has been received and our team will contact you soon.</p>
+                            <button id="apply-another-btn" class="btn btn-outline" style="color: var(--primary-gold); border: 2px solid var(--primary-gold); background: transparent;">Submit Another Application</button>
+                        `;
+                        formContainer.appendChild(successMsg);
+                        
+                        document.getElementById('apply-another-btn').addEventListener('click', () => {
+                            form.reset();
+                            document.getElementById('file-name').textContent = '';
+                            successMsg.remove();
+                            form.style.display = 'block';
+                        });
+                        submitBtn.textContent = originalText;
+                        submitBtn.disabled = false;
+                    })
+                    .catch(error => {
+                        console.error(error);
+                        alert("There was an error submitting your application. Please try again.");
+                        submitBtn.textContent = originalText;
+                        submitBtn.disabled = false;
                     });
                 }
             });
